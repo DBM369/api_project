@@ -72,7 +72,7 @@ app.post('/products', (req, res) => {
     };
 
     products.push(newProduct);
-    res.status(201).json(newProduct);
+    return res.status(201).json(newProduct);
 });
 
 // PUT endpoint
@@ -92,9 +92,9 @@ app.put('/products/:id', (req, res) => {
     });
 
     if (updatedProduct) {
-        res.json(updatedProduct);
+        return res.json(updatedProduct);
     } else {
-        res.status(404).json({ message: 'Product not found' });
+        return res.status(404).json({ message: 'Product not found' });
     }
 });
 
@@ -106,9 +106,9 @@ app.delete('/products/:id', (req, res) => {
     products = products.filter(product => product.id !== productId);
 
     if (products.length === initLength) {
-        res.status(404).json({ message: 'Product not found' });
+        return res.status(404).json({ message: 'Product not found' });
     } else {
-        res.json({ message: 'Product deleted' });
+        return res.json({ message: 'Product deleted' });
     }
 });
 
