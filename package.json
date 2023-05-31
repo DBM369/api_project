@@ -1,0 +1,22 @@
+{
+  "name": "api_project",
+  "version": "1.0.0",
+  "description": "simple api project to create multiple api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "project",
+    "node",
+    "express"
+  ],
+  "author": "andre",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "oracledb": "^6.0.0",
+    "sequelize": "^6.31.1"
+  }
+}
