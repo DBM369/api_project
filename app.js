@@ -4,7 +4,7 @@ const port = 4000;
 
 app.use(express.json());
 
-let products = [
+const products = [
     {
         "id": 1,
         "name": "Product A",
