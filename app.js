@@ -72,7 +72,7 @@ app.post('/products', (req, res) => {
     };
 
     products.push(newProduct);
-    return res.status(201).json(newProduct);
+    res.status(201).json(newProduct);
 });
 
 // PUT endpoint
