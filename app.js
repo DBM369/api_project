@@ -59,7 +59,7 @@ let products = [
 
 // GET endpoint
 app.get('/products', (req, res) => {
-    res.json(products);
+    return res.json(products);
 });
 
 // POST endpoint
