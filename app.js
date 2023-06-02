@@ -112,7 +112,7 @@ app.delete('/products/:id', (req, res) => {
     }
 });
 
-// recherche des produits par nom
+// Search products by name
 app.get('/products', (req, res) => {
     const { name } = req.query;
     if (!name) {
@@ -126,10 +126,10 @@ app.get('/products', (req, res) => {
     return res.json(filteredProducts);
 });
 
-// pagination des resultats
+// Pagination of results
 app.get('/products/page/:pageNumber', (req, res) => {
     const { pageNumber } = req.params;
-    const pageSize = 5; // Number of products per page
+    const pageSize = 5;
     const startIndex = (pageNumber - 1) * pageSize;
     const endIndex = startIndex + pageSize;
 
@@ -143,12 +143,11 @@ app.get('/products/page/:pageNumber', (req, res) => {
     });
 });
 
-// gestion d'erreurs et retours
+// Error handling and returns
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ error: 'Error' });
 });
-
 
 // Start server
 app.listen(port, () => {
