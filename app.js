@@ -112,6 +112,44 @@ app.delete('/products/:id', (req, res) => {
     }
 });
 
+// recherche des produits par nom
+app.get('/products', (req, res) => {
+    const { name } = req.query;
+    if (!name) {
+        return res.status(400).json({ error: 'Missing name' });
+    }
+
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(name.toLowerCase())
+    );
+
+    return res.json(filteredProducts);
+});
+
+// pagination des resultats
+app.get('/products/page/:pageNumber', (req, res) => {
+    const { pageNumber } = req.params;
+    const pageSize = 5; // Number of products per page
+    const startIndex = (pageNumber - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+
+    const paginatedProducts = products.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(products.length / pageSize);
+
+    return res.json({
+        data: paginatedProducts,
+        currentPage: pageNumber,
+        totalPages: totalPages
+    });
+});
+
+// gestion d'erreurs et retours
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Error' });
+});
+
+
 // Start server
 app.listen(port, () => {
     console.log(`Server launched on port ${port}`);
